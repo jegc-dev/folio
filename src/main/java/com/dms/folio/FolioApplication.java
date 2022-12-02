@@ -53,11 +53,7 @@ public class FolioApplication {
 
         }*/
 
-        /**
-         * Extract content
-         */
-
-        BodyContentHandler handler = new BodyContentHandler();
+/*        BodyContentHandler handler = new BodyContentHandler();
         Metadata metadata = new Metadata();
         FileInputStream inputStream = new FileInputStream(new File(
                 "/home/goguen/tika/Jorge_Granados-Senior-Software-Developer_lastUpdate_20221031.docx"));
@@ -82,7 +78,7 @@ public class FolioApplication {
 
         for(String name : metadataNames) {
             System.out.println(name+ " : " + metadata.get(name));
-        }
+        }*/
 
     }
 

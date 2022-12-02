@@ -1,16 +1,14 @@
 package com.dms.folio.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
-
+@Builder
+@Data
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor

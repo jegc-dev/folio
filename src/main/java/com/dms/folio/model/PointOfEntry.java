@@ -1,14 +1,12 @@
 package com.dms.folio.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+@Builder
+@Data
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
