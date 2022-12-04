@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -22,7 +23,11 @@ public class PointOfEntryServiceImpl implements PointOfEntryService {
 
     @Override
     public PointOfEntry create(PointOfEntry pointOfEntry) {
-        log.info("Creating a new PointOfEntry: {}", pointOfEntry.getDateOfEntry());
+        log.info("Creating a new PointOfEntry: {}", pointOfEntry.getDocumentId());
+
+        // Barcode Code-128 data
+        pointOfEntry.setEntryCode(UUID.randomUUID().toString());
+
         return repository.save(pointOfEntry);
     }
 
@@ -41,14 +46,7 @@ public class PointOfEntryServiceImpl implements PointOfEntryService {
 
     @Override
     public PointOfEntry update(PointOfEntry pointOfEntry) {
-        log.info("Updating a PointOfEntry: {}", pointOfEntry.getDateOfEntry());
+        log.info("Updating a PointOfEntry: {}", pointOfEntry.getDocumentId());
         return repository.save(pointOfEntry);
     }
 }
-/*
-* TODO:
-*  1. How to generate input/output unique number.
-*  2. How to generate barcode structure.
-*  3. Refactor model and service
-*
- */

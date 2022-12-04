@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
 @Builder
 @Data
 @EqualsAndHashCode
@@ -21,11 +22,11 @@ public class PointOfEntry implements Serializable {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "input_number", updatable = false)
-    private Long inputNumber;
+    @Column(name = "entry_code", updatable = false)
+    private String entryCode;
 
-    @Column(name = "output_number", updatable = false)
-    private Long outputNumber;
+    @Enumerated(EnumType.STRING)
+    private EntryType entryType;
 
     private String subject;
 
