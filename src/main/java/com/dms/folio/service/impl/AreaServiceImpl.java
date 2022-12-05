@@ -40,6 +40,11 @@ public class AreaServiceImpl implements AreaService {
     }
 
     @Override
+    public Area get(String code) {
+        return null;
+    }
+
+    @Override
     public Area update(Area area) {
         log.info("Updating a Area: {}", area.getCode());
         return repository.save(area);

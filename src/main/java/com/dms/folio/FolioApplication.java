@@ -1,31 +1,22 @@
 package com.dms.folio;
 
-import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.Http2SolrClient;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.odf.OpenDocumentParser;
-import org.apache.tika.parser.pdf.PDFParser;
-import org.apache.tika.sax.BodyContentHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 @SpringBootApplication
 public class FolioApplication {
 
-    public static void main(String[] args) throws Exception, SolrServerException, IOException
-    {
+    public static void main(String[] args) throws Exception, SolrServerException, IOException {
 
         SpringApplication.run(FolioApplication.class, args);
+
+        System.out.println("========================================");
+        System.out.println(UUID.randomUUID().toString());
+        System.out.println("========================================");
 
         /*final String serverBaseUrl = "http://localhost:8983/solr/mycol1";
 
