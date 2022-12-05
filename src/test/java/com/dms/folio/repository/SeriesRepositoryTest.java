@@ -37,7 +37,7 @@ class SeriesRepositoryTest {
                 .build();
 
         Series ser01 = Series.builder()
-                .code("A01")
+                .code("A02")
                 .name("Actas")
                 .subSeriesList(List.of(subSer01))
                 .build();

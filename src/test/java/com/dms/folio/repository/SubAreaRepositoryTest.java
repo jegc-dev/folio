@@ -39,8 +39,8 @@ class SubAreaRepositoryTest {
                 .build();
 
         SubArea subAreaS01 = SubArea.builder()
-                .code("IS01")
-                .name("Seguridad Informatica")
+                .code("IS022")
+                .name("Seguridad Telecomunicaciones")
                 .seriesList(List.of(series01))
                 .build();
 
