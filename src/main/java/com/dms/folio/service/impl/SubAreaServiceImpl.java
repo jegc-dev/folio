@@ -1,6 +1,7 @@
 package com.dms.folio.service.impl;
 
 import com.dms.folio.exception.SubAreaNotFoundException;
+import com.dms.folio.model.Series;
 import com.dms.folio.model.SubArea;
 import com.dms.folio.repository.SubAreaRepository;
 import com.dms.folio.service.SubAreaService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -40,10 +42,26 @@ public class SubAreaServiceImpl implements SubAreaService {
     }
 
     @Override
+    public SubArea get(String code) {
+        return repository.findSubAreaByCode(code).orElseThrow(() -> new SubAreaNotFoundException("SubArea by code {" + code + "} was not found"));
+    }
+
+    @Override
     public SubArea update(SubArea Subarea) {
         log.info("Updating a SubArea: {}", Subarea.getCode());
         return repository.save(Subarea);
     }
 
 
+    @Override
+    public SubArea addSeries(String subAreaCode, Series series) {
+
+        SubArea subArea = this.get(subAreaCode);
+        List<Series> seriesList = subArea.getSeriesList();
+
+        seriesList.add(series);
+        subArea.setSeriesList(seriesList);
+
+        return repository.save(subArea);
+    }
 }
