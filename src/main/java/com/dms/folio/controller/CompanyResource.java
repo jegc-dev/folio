@@ -1,6 +1,5 @@
-package com.dms.folio.resource;
+package com.dms.folio.controller;
 
-import com.dms.folio.exception.APIRequestException;
 import com.dms.folio.model.Company;
 import com.dms.folio.model.Response;
 import com.dms.folio.service.impl.CompanyServiceImpl;

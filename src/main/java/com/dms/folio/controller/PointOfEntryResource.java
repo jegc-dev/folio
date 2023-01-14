@@ -1,8 +1,8 @@
-package com.dms.folio.resource;
+package com.dms.folio.controller;
 
-import com.dms.folio.model.SubArea;
+import com.dms.folio.model.PointOfEntry;
 import com.dms.folio.model.Response;
-import com.dms.folio.service.impl.SubAreaServiceImpl;
+import com.dms.folio.service.impl.PointOfEntryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +15,19 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/subarea")
+@RequestMapping("/pointofentry")
 @RequiredArgsConstructor
-public class SubAreaResource {
+public class PointOfEntryResource {
 
-    private final SubAreaServiceImpl subAreaService;
+    private final PointOfEntryServiceImpl pointOfEntryService;
 
     @GetMapping("/list")
-    public ResponseEntity<Response> getSubAreas() {
+    public ResponseEntity<Response> getPointOfEntries() {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("subArea", subAreaService.list(10)))
-                        .message("SubAreas retrieved")
+                        .data(Map.of("pointOfEntry", pointOfEntryService.list(10)))
+                        .message("PointOfEntries retrieved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -35,12 +35,12 @@ public class SubAreaResource {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Response> saveSubArea(@RequestBody @Valid SubArea subArea) {
+    public ResponseEntity<Response> savePointOfEntry(@RequestBody @Valid PointOfEntry pointOfEntry) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("subArea", subAreaService.create(subArea)))
-                        .message("SubArea created")
+                        .data(Map.of("pointOfEntry", pointOfEntryService.create(pointOfEntry)))
+                        .message("PointOfEntry created")
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build()
@@ -48,12 +48,12 @@ public class SubAreaResource {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Response> getSubArea(@PathVariable("id") Long id) {
+    public ResponseEntity<Response> getPointOfEntry(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("subArea", subAreaService.get(id)))
-                        .message("SubArea retrieved")
+                        .data(Map.of("pointOfEntry", pointOfEntryService.get(id)))
+                        .message("PointOfEntry retrieved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -61,12 +61,12 @@ public class SubAreaResource {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Response> updateSubArea(@RequestBody @Valid SubArea subArea) {
+    public ResponseEntity<Response> updatePointOfEntry(@RequestBody @Valid PointOfEntry pointOfEntry) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("subArea", subAreaService.update(subArea)))
-                        .message("SubArea updated")
+                        .data(Map.of("pointOfEntry", pointOfEntryService.update(pointOfEntry)))
+                        .message("PointOfEntry updated")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()

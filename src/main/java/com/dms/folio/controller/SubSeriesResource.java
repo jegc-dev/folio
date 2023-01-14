@@ -1,4 +1,4 @@
-package com.dms.folio.resource;
+package com.dms.folio.controller;
 
 import com.dms.folio.model.SubSeries;
 import com.dms.folio.model.Response;

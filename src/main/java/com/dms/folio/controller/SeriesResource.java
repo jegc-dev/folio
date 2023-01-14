@@ -1,8 +1,8 @@
-package com.dms.folio.resource;
+package com.dms.folio.controller;
 
-import com.dms.folio.model.PointOfEntry;
+import com.dms.folio.model.Series;
 import com.dms.folio.model.Response;
-import com.dms.folio.service.impl.PointOfEntryServiceImpl;
+import com.dms.folio.service.impl.SeriesServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +15,19 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/pointofentry")
+@RequestMapping("/series")
 @RequiredArgsConstructor
-public class PointOfEntryResource {
+public class SeriesResource {
 
-    private final PointOfEntryServiceImpl pointOfEntryService;
+    private final SeriesServiceImpl seriesService;
 
     @GetMapping("/list")
-    public ResponseEntity<Response> getPointOfEntries() {
+    public ResponseEntity<Response> getSeries() {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("pointOfEntry", pointOfEntryService.list(10)))
-                        .message("PointOfEntries retrieved")
+                        .data(Map.of("series", seriesService.list(10)))
+                        .message("Seriess retrieved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -35,12 +35,12 @@ public class PointOfEntryResource {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Response> savePointOfEntry(@RequestBody @Valid PointOfEntry pointOfEntry) {
+    public ResponseEntity<Response> saveSeries(@RequestBody @Valid Series series) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("pointOfEntry", pointOfEntryService.create(pointOfEntry)))
-                        .message("PointOfEntry created")
+                        .data(Map.of("series", seriesService.create(series)))
+                        .message("Series created")
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build()
@@ -48,12 +48,12 @@ public class PointOfEntryResource {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Response> getPointOfEntry(@PathVariable("id") Long id) {
+    public ResponseEntity<Response> getSeries(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("pointOfEntry", pointOfEntryService.get(id)))
-                        .message("PointOfEntry retrieved")
+                        .data(Map.of("series", seriesService.get(id)))
+                        .message("Series retrieved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -61,12 +61,12 @@ public class PointOfEntryResource {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Response> updatePointOfEntry(@RequestBody @Valid PointOfEntry pointOfEntry) {
+    public ResponseEntity<Response> updateSeries(@RequestBody @Valid Series series) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("pointOfEntry", pointOfEntryService.update(pointOfEntry)))
-                        .message("PointOfEntry updated")
+                        .data(Map.of("series", seriesService.update(series)))
+                        .message("Series updated")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()

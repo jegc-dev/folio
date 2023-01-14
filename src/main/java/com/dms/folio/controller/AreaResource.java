@@ -1,8 +1,8 @@
-package com.dms.folio.resource;
+package com.dms.folio.controller;
 
-import com.dms.folio.model.Series;
+import com.dms.folio.model.Area;
 import com.dms.folio.model.Response;
-import com.dms.folio.service.impl.SeriesServiceImpl;
+import com.dms.folio.service.impl.AreaServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +15,19 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/series")
+@RequestMapping("/area")
 @RequiredArgsConstructor
-public class SeriesResource {
+public class AreaResource {
 
-    private final SeriesServiceImpl seriesService;
+    private final AreaServiceImpl areaService;
 
     @GetMapping("/list")
-    public ResponseEntity<Response> getSeries() {
+    public ResponseEntity<Response> getAreas() {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("series", seriesService.list(10)))
-                        .message("Seriess retrieved")
+                        .data(Map.of("area", areaService.list(10)))
+                        .message("Areas retrieved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -35,12 +35,12 @@ public class SeriesResource {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Response> saveSeries(@RequestBody @Valid Series series) {
+    public ResponseEntity<Response> saveArea(@RequestBody @Valid Area area) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("series", seriesService.create(series)))
-                        .message("Series created")
+                        .data(Map.of("area", areaService.create(area)))
+                        .message("Area created")
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build()
@@ -48,12 +48,12 @@ public class SeriesResource {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Response> getSeries(@PathVariable("id") Long id) {
+    public ResponseEntity<Response> getArea(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("series", seriesService.get(id)))
-                        .message("Series retrieved")
+                        .data(Map.of("area", areaService.get(id)))
+                        .message("Area retrieved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -61,12 +61,12 @@ public class SeriesResource {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Response> updateSeries(@RequestBody @Valid Series series) {
+    public ResponseEntity<Response> updateArea(@RequestBody @Valid Area area) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("series", seriesService.update(series)))
-                        .message("Series updated")
+                        .data(Map.of("area", areaService.update(area)))
+                        .message("Area updated")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
