@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -37,15 +36,6 @@ public class Area implements Serializable {
     @NotEmpty(message = "CODE cannot be empty or null")
     @Column(name = "code", updatable = false)
     private String code;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "area_id",
-            referencedColumnName = "id"
-    )
-    private List<SubArea> subAreaList;
 
     @OneToMany(
             cascade = CascadeType.ALL

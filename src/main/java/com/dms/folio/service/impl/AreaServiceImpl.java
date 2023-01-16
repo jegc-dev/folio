@@ -2,7 +2,6 @@ package com.dms.folio.service.impl;
 
 import com.dms.folio.exception.AreaNotFoundException;
 import com.dms.folio.model.Area;
-import com.dms.folio.model.SubArea;
 import com.dms.folio.repository.AreaRepository;
 import com.dms.folio.service.AreaService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -52,15 +50,4 @@ public class AreaServiceImpl implements AreaService {
         return repository.save(area);
     }
 
-    @Override
-    public Area addSubArea(String areaCode, SubArea subArea) {
-
-        Area tempArea = this.get(areaCode);
-        List<SubArea> tempSubareaList = tempArea.getSubAreaList();
-
-        tempSubareaList.add(subArea);
-        tempArea.setSubAreaList(tempSubareaList);
-
-        return repository.save(tempArea);
-    }
 }

@@ -60,12 +60,17 @@ public class AreaResource {
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateArea(@RequestBody @Valid Area area) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Response> updateArea(@PathVariable("id") Long id, @RequestBody @Valid Area area) {
+
+        Area updatedArea = areaService.get(id);
+        updatedArea.setCode(area.getCode());
+        updatedArea.setName(area.getName());
+
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("area", areaService.update(area)))
+                        .data(Map.of("area", areaService.update(updatedArea)))
                         .message("Area updated")
                         .status(OK)
                         .statusCode(OK.value())
