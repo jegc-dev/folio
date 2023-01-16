@@ -6,6 +6,7 @@ import com.dms.folio.repository.CompanyRepository;
 import com.dms.folio.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +35,19 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company get(Long id) {
-        log.info("Fetching a Company: {}", id);
+        log.info("Fetching a Company by Id: {}", id);
         return repository.findById(id).orElseThrow(() -> new CompanyNotFoundException("Company by id {" + id + "} was not found"));
+    }
+
+    @Override
+    public Company get(String nit) {
+        log.info("Fetching a Company by nit: {}", nit);
+
+        try {
+            return repository.findByNit(nit);
+        } catch (DataAccessException e) {
+            throw new CompanyNotFoundException("Company by nit {" + nit + "} was not found");
+        }
     }
 
     @Override

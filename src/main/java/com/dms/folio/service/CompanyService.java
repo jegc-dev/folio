@@ -6,7 +6,12 @@ import java.util.Collection;
 
 public interface CompanyService {
     Company create(Company company);
+
     Collection<Company> list(int limit);
+
     Company get(Long id);
+
+    Company get(String nit);
+
     Company update(Company company);
 }

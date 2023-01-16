@@ -60,17 +60,35 @@ public class CompanyResource {
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateCompany(@RequestBody @Valid Company company) {
+    @GetMapping("/get/{nit}/nit")
+    public ResponseEntity<Response> getCompanyByNit(@PathVariable("nit") String nit) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
-                        .data(Map.of("company", companyService.update(company)))
+                        .data(Map.of("company", companyService.get(nit)))
+                        .message("Company retrieved")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Response> updateCompany(@PathVariable("id") Long id, @RequestBody @Valid Company company) {
+
+        Company newCompany = companyService.get(id);
+        newCompany.setName(company.getName());
+
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(LocalDateTime.now())
+                        .data(Map.of("company", companyService.update(newCompany)))
                         .message("Company updated")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
         );
+
     }
 
 }
